@@ -1,47 +1,49 @@
-:root {
-    --primary: #2563eb;
-    --dark: #1e293b;
-    --bg: #f8fafc;
-    --text: #334155;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background-color: #0f172a; color: white; }
 
-body { background-color: var(--bg); color: var(--text); }
-
-.hero { text-align: center; padding: 80px 20px; background: white; border-bottom: 1px solid #e2e8f0; }
-.hero h1 { font-size: 2.5rem; color: var(--dark); margin-bottom: 10px; }
-.highlight { color: var(--primary); }
-
-.container { max-width: 1100px; margin: -40px auto 60px; padding: 0 20px; }
-
-.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-.p-card { 
-    background: white; 
-    text-decoration: none; 
-    border-radius: 16px; 
-    overflow: hidden; 
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); 
-    transition: 0.3s;
+.main-header {
+    height: 40vh;
+    background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1350&q=80') center/cover;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.p-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+.overlay { background: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 20px; }
 
-.p-image { height: 180px; background-color: #cbd5e1; background-size: cover; background-position: center; }
+.main-header h1 { font-size: 3rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 4px; }
 
-/* Cores de fundo temporárias enquanto você não coloca fotos */
-.img-advocacia { background-image: linear-gradient(to right, #0f172a, #334155); }
-.img-restaurante { background-image: linear-gradient(to right, #ef4444, #f97316); }
-.img-dentista { background-image: linear-gradient(to right, #06b6d4, #3b82f6); }
-.img-personal { background-image: linear-gradient(to right, #22c55e, #10b981); }
-.img-cuidador { background-image: linear-gradient(to right, #a855f7, #ec4899); }
+.container { max-width: 1200px; margin: -50px auto 50px; padding: 0 20px; position: relative; z-index: 10; }
 
-.p-content { padding: 25px; }
-.p-content span { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; }
-.p-content h3 { font-size: 1.25rem; color: var(--dark); margin: 8px 0; }
-.p-content p { font-size: 0.9rem; color: #64748b; }
+.showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 
-footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.8rem; }
+.nicho-card {
+    height: 350px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    position: relative;
+    transition: 0.4s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.nicho-card:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3); }
+
+/* Imagens Reais para os Cards */
+.advocacia { background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80') center/cover; }
+.restaurante { background: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=500&q=80') center/cover; }
+.dentista { background: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=500&q=80') center/cover; }
+.fitness { background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80') center/cover; }
+.saude { background: url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80') center/cover; }
+
+.card-info { background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 30px 20px; }
+
+.card-info h3 { font-size: 1.5rem; margin-bottom: 5px; color: #38bdf8; }
+
+footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
