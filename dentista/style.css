@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #0077b6; /* Azul Odontológico */
+    --secondary: #00b4d8;
+    --light-bg: #f8f9fa;
+    --dark-text: #2b2d42;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section com imagem de Sorriso */
+.hero {
+    height: 90vh;
+    /* Imagem de sorriso/dente de alta qualidade */
+    background: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 40, 85, 0.6); /* Overlay azul para passar confiança */
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+.tagline { font-weight: 600; letter-spacing: 2px; color: var(--secondary); display: block; margin-bottom: 10px; }
+
+.hero h1 { font-family: 'Montserrat', sans-serif; font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
+
+.highlight { color: #fff; text-decoration: underline; text-decoration-color: var(--secondary); }
+
+.btn-cta {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+}
+
+.btn-cta:hover { background: var(--primary); transform: translateY(-3px); }
+
+/* Especialidades */
+.especialidades { padding: 80px 0; background: var(--light-bg); text-align: center; }
+.titulo-secao { font-size: 2.5rem; margin-bottom: 50px; color: var(--primary); }
+
+.grid-servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.card-vet { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+.img-servico {
+    height: 200px;
+    background: #e9ecef;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #adb5bd;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Sobre */
+.sobre-clinica { padding: 100px 0; }
+.grid-sobre { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+.check-list { list-style: none; margin-top: 20px; }
+.check-list li { margin-bottom: 10px; font-weight: 500; }
+.check-list i { color: var(--secondary); margin-right: 10px; }
+
+.placeholder-img { height: 450px; background: #ddd; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #888; }
+
+/* Contato */
+.secao-contato { padding: 100px 0; background: var(--primary); color: white; text-align: center; }
+.box-btn { display: flex; justify-content: center; margin-top: 40px; }
+
+.btn-whatsapp {
+    background: #25d366;
+    color: white;
+    padding: 20px 45px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+footer { padding: 40px; background: #222; color: #999; text-align: center; font-size: 0.9rem; }
+footer span { color: var(--secondary); }
+
+@media (max-width: 768px) {
+    .grid-sobre { grid-template-columns: 1fr; text-align: center; }
+    .hero h1 { font-size: 2.5rem; }
+}

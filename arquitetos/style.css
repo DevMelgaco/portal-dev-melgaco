@@ -1,0 +1,100 @@
+:root {
+    --fundo: #ffffff;
+    --texto: #1a1a1a;
+    --cinza-luxo: #f8f8f8;
+    --detalhe: #999;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--texto);
+    background-color: var(--fundo);
+    line-height: 1.8;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
+                url('https://images.unsplash.com/photo-1487958449913-d9573a2162ed?auto=format&fit=crop&w=1350&q=80') center/cover;
+}
+
+.hero h1 {
+    font-family: 'Prata', serif;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 400;
+    letter-spacing: -2px;
+}
+
+.highlight { color: #555; }
+
+.tagline {
+    letter-spacing: 8px;
+    font-size: 0.8rem;
+    color: var(--detalhe);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.btn-clean {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 40px;
+    border: 1px solid var(--texto);
+    text-decoration: none;
+    color: var(--texto);
+    font-weight: 400;
+    letter-spacing: 2px;
+    transition: 0.4s;
+}
+
+.btn-clean:hover { background: var(--texto); color: white; }
+
+/* PORTFOLIO */
+.portfolio { padding: 120px 0; }
+.titulo-luxo { font-family: 'Prata', serif; font-size: 3rem; text-align: center; margin-bottom: 80px; }
+
+.grid-arquitetura {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.projeto-card { position: relative; overflow: hidden; cursor: pointer; }
+.placeholder-img { height: 500px; background: var(--cinza-luxo); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #ccc; transition: 0.5s; }
+.projeto-card:hover .placeholder-img { transform: scale(1.05); }
+
+.projeto-info { margin-top: 20px; }
+.projeto-info h3 { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; }
+.projeto-info p { color: var(--detalhe); font-size: 0.9rem; }
+
+/* SOBRE */
+.sobre { padding: 120px 0; background: var(--cinza-luxo); }
+.grid-sobre { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.placeholder-perfil { height: 600px; background: #ddd; }
+.sobre-texto h2 { font-family: 'Prata', serif; font-size: 2.5rem; margin-bottom: 30px; }
+
+/* CONTATO */
+.contato { padding: 120px 0; text-align: center; }
+.botoes-luxo { display: flex; justify-content: center; gap: 30px; margin-top: 50px; }
+.btn-email, .btn-zap { padding: 15px 50px; text-decoration: none; font-weight: bold; border-radius: 0; }
+.btn-email { background: #eee; color: #333; }
+.btn-zap { background: #25d366; color: white; }
+
+/* RODAPÉ */
+footer { padding: 60px 0; text-align: center; border-top: 1px solid #eee; }
+.assinatura-final span { font-weight: 900; color: #000; text-decoration: underline; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .grid-sobre { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 3.5rem; }
+}

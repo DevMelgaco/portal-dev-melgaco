@@ -1,0 +1,385 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Maria Estoura Balão 🎈</title>
+<style>
+  :root{--bg:#b7eaff;--panel:#ffffff;--accent:#ff6b81;--text:#0a0a0a;}
+  *{box-sizing:border-box;touch-action:none;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Roboto,Segoe UI;}
+  body{display:flex;flex-direction:column;align-items:center;background:linear-gradient(#bfeaff,#fff);}
+
+  /* full-screen game container */
+  #app{width:100%;max-width:440px; height:100vh; background:linear-gradient(#bfeaff,#fff); position:relative; overflow:hidden; display:flex;flex-direction:column;}
+
+  /* MENU SCREEN */
+  #menu{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;z-index:40}
+  .title{font-size:26px;color:var(--accent);font-weight:900;margin-bottom:8px;text-align:center}
+  .subtitle{font-size:15px;color:#333;margin-bottom:12px}
+  #mariaPreview{width:240px;height:auto;border-radius:18px;box-shadow:0 8px 24px rgba(20,40,80,0.12);overflow:hidden;background:#fff;padding:10px;display:flex;align-items:center;justify-content:center;}
+  #mariaPreview img{width:100%;height:auto;display:block}
+
+  .startBtn{margin-top:14px;background:var(--accent);color:#fff;border:none;padding:14px 26px;border-radius:14px;font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(255,107,129,0.2);}
+  .opt-row{display:flex;gap:8px;margin-top:10px;width:100%;justify-content:center}
+  .lvl{background:#fff;padding:8px 12px;border-radius:10px;border:2px solid transparent;opacity:0.8}
+  .lvl.active{border-color:#ff176c;opacity:1;font-weight:800}
+
+  /* HUD */
+  header{width:100%;padding:10px 14px;background:var(--panel);display:flex;gap:10px;align-items:center;justify-content:space-between;z-index:30}
+  .stat{background:#fff;padding:6px 10px;border-radius:10px;font-weight:700}
+
+  /* game area */
+  #gameArea{flex:1;position:relative;display:flex;align-items:end;justify-content:center;padding-bottom:10px;overflow:hidden}
+  canvas#gameCanvas{width:100%;height:100%;display:block}
+
+  /* Maria character overlay (small) */
+  .mariaChar{position:absolute;bottom:22px;left:12px;width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:35;transform-origin:center;transition:transform 400ms ease}
+
+  /* confetti layer */
+  #confetti{position:absolute;inset:0;pointer-events:none;z-index:34}
+
+  /* footer controls */
+  .controls{display:flex;gap:12px;padding:10px;background:#fff;border-top:2px solid #eee;align-items:center;justify-content:space-between}
+  .btn{flex:1;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:800}
+
+  /* responsive tweaks */
+  @media (max-width:420px){
+    #mariaPreview{width:200px}
+    .title{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<div id="app" role="application" aria-label="Maria Estoura Balão">
+
+  <!-- MENU -->
+  <div id="menu">
+    <div class="title">Maria Estoura Balão 🎈</div>
+    <div class="subtitle">Toque nos balões e ajude a Maria a coletar pontos!</div>
+    <div id="mariaPreview"><img src="maria_menu.png" alt="Maria"/></div>
+    <div class="opt-row">
+      <button class="lvl active" id="easy">Fácil</button>
+      <button class="lvl" id="medium">Médio</button>
+      <button class="lvl" id="hard">Difícil</button>
+    </div>
+    <button id="start" class="startBtn">Iniciar 🎮</button>
+  </div>
+
+  <header>
+    <div style="font-weight:900">Maria Estoura Balão</div>
+    <div style="display:flex;gap:8px;">
+      <div class="stat" id="score">Pontos: 0</div>
+      <div class="stat" id="time">30s</div>
+      <div class="stat" id="lives">Vidas: 3</div>
+    </div>
+  </header>
+
+  <div id="gameArea">
+    <canvas id="gameCanvas"></canvas>
+    <canvas id="confetti"></canvas>
+    <div class="mariaChar" id="mariaChar" aria-hidden="true">
+      <!-- small circular copy of Maria for in-game celebrations -->
+      <img src="maria_menu.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,0.15)"/>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="mute" class="btn" style="background:#fff;color:#222;border:2px solid #eee">Som: On</button>
+    <button id="restart" class="btn">Reiniciar</button>
+  </div>
+</div>
+
+<script>
+/* Maria Estoura Balão - Mobile-ready single-file game
+   Features implemented per request:
+   1) Maria cartoon integrated (menu + in-game character)
+   2) Sounds & background tune via WebAudio (no external files)
+   3) Downloadable game package (this file is the playable one)
+   4) Levels / phases (easy, medium, hard) and progression
+   Extra: celebration animation (Maria) and confetti.
+
+   Open this file on a mobile browser and tap 'Iniciar' to play.
+*/
+
+// Canvas setup
+const canvas = document.getElementById('gameCanvas');
+const confettiCanvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+const cctx = confettiCanvas.getContext('2d');
+let DPR = window.devicePixelRatio || 1;
+
+function resize(){
+  const area = document.getElementById('gameArea');
+  canvas.width = area.clientWidth * DPR;
+  canvas.height = area.clientHeight * DPR;
+  canvas.style.width = area.clientWidth + 'px';
+  canvas.style.height = area.clientHeight + 'px';
+
+  confettiCanvas.width = canvas.width;
+  confettiCanvas.height = canvas.height;
+  confettiCanvas.style.width = canvas.style.width;
+  confettiCanvas.style.height = canvas.style.height;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  cctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resize);
+resize();
+
+// DOM elements
+const menu = document.getElementById('menu');
+const startBtn = document.getElementById('start');
+const scoreEl = document.getElementById('score');
+const timeEl = document.getElementById('time');
+const livesEl = document.getElementById('lives');
+const muteBtn = document.getElementById('mute');
+const restartBtn = document.getElementById('restart');
+const mariaChar = document.getElementById('mariaChar');
+const lvlBtns = { easy: document.getElementById('easy'), medium: document.getElementById('medium'), hard: document.getElementById('hard') };
+
+// Game state
+let balloons = [], confetties = [];
+let score = 0, lives = 3, timeLeft = 30, running = false, level = 'easy';
+let lastTime = performance.now(), spawnAcc = 0, startTime = 0;
+let audioOn = true;
+
+// Level params
+const params = {
+  easy:{spawn:1100,min:30,max:60},
+  medium:{spawn:750,min:45,max:85},
+  hard:{spawn:420,min:70,max:120}
+};
+
+// WebAudio simple manager for background loop + pop sound
+let audioCtx = null;
+function ensureAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+function playPop(){ if(!audioOn) return; ensureAudio(); const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type='square'; o.frequency.value=900; g.gain.value=0.08; o.connect(g); g.connect(audioCtx.destination); o.start(); g.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.08); o.stop(audioCtx.currentTime+0.1); }
+function playWinTone(){ if(!audioOn) return; ensureAudio(); const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type='sine'; o.frequency.value=660; g.gain.value=0.06; o.connect(g); g.connect(audioCtx.destination); o.start(); o.frequency.setValueAtTime(660,audioCtx.currentTime); o.frequency.linearRampToValueAtTime(880,audioCtx.currentTime+0.14); g.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.35); o.stop(audioCtx.currentTime+0.36); }
+
+// gentle background 'music' loop (simple arpeggio)
+let bgOsc = null;
+let bgGain = null;
+let bgRunning = false;
+function startBg(){
+  if(!audioOn) return;
+  ensureAudio();
+  if(bgRunning) return;
+  bgOsc = audioCtx.createOscillator();
+  bgGain = audioCtx.createGain();
+  bgOsc.type = 'sine';
+  bgOsc.frequency.value = 220;
+  bgGain.gain.value = 0.01;
+  bgOsc.connect(bgGain); bgGain.connect(audioCtx.destination);
+  bgOsc.start();
+  bgRunning = true;
+  // slowly modulate frequency for a cute ambient effect
+  let i=0;
+  const iv = setInterval(()=>{
+    if(!bgRunning){ clearInterval(iv); return; }
+    const freq = 200 + Math.sin(i/10)*40;
+    bgOsc.frequency.setValueAtTime(freq,audioCtx.currentTime);
+    i++;
+  },300);
+}
+function stopBg(){ if(bgOsc){ try{ bgOsc.stop(); }catch(e){} } bgOsc=null; bgRunning=false; bgGain=null; }
+
+// util random
+function rand(a,b){ return Math.random()*(b-a)+a; }
+
+// spawn balloon
+function spawnBalloon(){
+  const r = rand(24,46);
+  balloons.push({
+    x: rand(r, canvas.width/DPR - r),
+    y: canvas.height/DPR + r + 10,
+    r: r,
+    speed: rand(params[level].min, params[level].max),
+    hue: Math.floor(rand(0,360)),
+    id: Math.random().toString(36).slice(2,9)
+  });
+}
+
+// update/draw
+function update(dt){
+  spawnAcc += dt*1000;
+  if(spawnAcc > params[level].spawn){ spawnBalloon(); spawnAcc = 0; }
+  for(let i=balloons.length-1;i>=0;i--){
+    const b = balloons[i];
+    b.y -= b.speed * dt;
+    if(b.y + b.r < 0){ balloons.splice(i,1); lives--; playPop(); updateHud(); if(lives<=0) endGame(false); }
+  }
+  // update confetti
+  for(let i=confetties.length-1;i>=0;i--){
+    const p = confetties[i];
+    p.vy += 600*dt;
+    p.x += p.vx*dt;
+    p.y += p.vy*dt;
+    p.rot += p.spin*dt;
+    if(p.y > canvas.height/DPR + 50) confetties.splice(i,1);
+  }
+}
+
+function draw(){
+  // clear
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  // simple soft ground
+  ctx.fillStyle = '#f7fbff';
+  ctx.fillRect(0, canvas.height/DPR - 40, canvas.width/DPR, 40);
+  // balloons
+  for(const b of balloons){
+    // string
+    ctx.beginPath();
+    ctx.moveTo(b.x, b.y + b.r - 4);
+    ctx.quadraticCurveTo(b.x + 6, b.y + b.r + 16, b.x + 2, b.y + b.r + 36);
+    ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(0,0,0,0.08)'; ctx.stroke();
+    // ellipse
+    ctx.beginPath();
+    ctx.ellipse(b.x, b.y, b.r*0.9, b.r, 0, 0, Math.PI*2);
+    ctx.fillStyle = `hsl(${b.hue} 85% 60%)`;
+    ctx.fill();
+    // highlight
+    ctx.beginPath();
+    ctx.ellipse(b.x - b.r*0.35, b.y - b.r*0.35, b.r*0.28, b.r*0.18, 0, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.55)'; ctx.fill();
+  }
+  // confetti draw
+  cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  for(const p of confetties){
+    cctx.save();
+    cctx.translate(p.x, p.y);
+    cctx.rotate(p.rot);
+    cctx.fillStyle = p.color;
+    cctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    cctx.restore();
+  }
+}
+
+// input handler (tap)
+function handleTap(e){
+  if(!running) return;
+  const rect = canvas.getBoundingClientRect();
+  const t = e.touches?e.touches[0]:e;
+  const x = t.clientX - rect.left;
+  const y = t.clientY - rect.top;
+  for(let i=balloons.length-1;i>=0;i--){
+    const b = balloons[i];
+    if((x-b.x)**2 + (y-b.y)**2 <= b.r*b.r){
+      balloons.splice(i,1);
+      score += 10;
+      playPop();
+      // small celebration: Maria pop animation + confetti + sound
+      animateMaria();
+      spawnConfetti(x, y);
+      updateHud();
+      // small progression: every 100 points add +5 seconds
+      if(score % 100 === 0){
+        timeLeft += 5;
+        playWinTone();
+      }
+      return;
+    }
+  }
+}
+
+// Maria animate (scale bounce)
+let mariaTween = null;
+function animateMaria(){
+  const el = mariaChar;
+  el.style.transition = 'transform 260ms cubic-bezier(.2,.9,.2,1)';
+  el.style.transform = 'scale(1.18) translateY(-8px)';
+  setTimeout(()=>{ el.style.transform = 'scale(1) translateY(0)'; }, 260);
+}
+
+// confetti generator
+function spawnConfetti(x,y){
+  const colors = ['#ff6b81','#ffd166','#7bd389','#89d4ff','#c47bff'];
+  for(let i=0;i<18;i++){
+    confetties.push({
+      x: x + rand(-10,10),
+      y: y + rand(-10,10),
+      vx: rand(-220,220),
+      vy: rand(-320,-140),
+      w: rand(6,12),
+      h: rand(8,14),
+      rot: rand(0,6.28),
+      spin: rand(-6,6),
+      color: colors[Math.floor(rand(0,colors.length))]
+    });
+  }
+}
+
+// HUD update
+function updateHud(){
+  scoreEl.textContent = 'Pontos: ' + score;
+  timeEl.textContent = Math.max(0, Math.ceil(timeLeft)) + 's';
+  livesEl.textContent = 'Vidas: ' + lives;
+}
+
+// game loop
+let raf = null;
+function loop(now){
+  const dt = Math.min(0.05, (now - lastTime)/1000);
+  lastTime = now;
+  if(running){
+    update(dt);
+    draw();
+    timeLeft = Math.max(0, 30 - (now - startTime)/1000);
+    if(timeLeft <= 0){ endGame(true); }
+    updateHud();
+  }
+  raf = requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// game controls
+function startGame(){
+  // resume audio context on first interaction
+  if(!audioCtx && audioOn){ try{ ensureAudio(); audioCtx.resume(); }catch(e){} }
+  // reset
+  balloons = []; confetties = [];
+  score = 0; lives = 3; timeLeft = 30; running = true; spawnAcc = 0; lastTime = performance.now(); startTime = performance.now();
+  menu.style.display = 'none';
+  updateHud();
+  if(audioOn) startBg();
+}
+
+function endGame(win){
+  running = false;
+  stopBg();
+  setTimeout(()=>{
+    if(win) alert('Tempo esgotado! Pontos: ' + score + '\\nParabéns! 🎉');
+    else alert('Fim de jogo! Pontos: ' + score + '\\nTente novamente!');
+    menu.style.display = 'flex';
+  }, 100);
+}
+
+// listeners
+canvas.addEventListener('click', handleTap);
+canvas.addEventListener('touchstart', function(e){ handleTap(e); e.preventDefault(); }, {passive:false});
+
+startBtn.addEventListener('click', startGame);
+restartBtn.addEventListener('click', ()=>{ startGame(); });
+
+muteBtn.addEventListener('click', ()=>{
+  audioOn = !audioOn;
+  muteBtn.textContent = 'Som: ' + (audioOn ? 'On' : 'Off');
+  if(!audioOn) stopBg(); else if(running) startBg();
+});
+
+// level switching
+lvlBtns.easy.addEventListener('click', ()=> setLevel('easy'));
+lvlBtns.medium.addEventListener('click', ()=> setLevel('medium'));
+lvlBtns.hard.addEventListener('click', ()=> setLevel('hard'));
+
+function setLevel(l){
+  level = l;
+  for(const k in lvlBtns) lvlBtns[k].classList.toggle('active', k===l);
+}
+
+// initialize HUD and resize
+updateHud();
+resize();
+</script>
+</body>
+</html>

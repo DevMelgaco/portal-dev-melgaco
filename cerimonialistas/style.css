@@ -1,0 +1,59 @@
+:root {
+    --gold: #d4af37;
+    --dark: #111111;
+    --bg-light: #fffaf5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-light);
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* HERO CENTRALIZADO NO MEIO DA TELA */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1350&q=80') center/cover;
+    color: white;
+}
+
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; text-transform: uppercase; }
+.highlight { color: var(--gold); }
+.tagline { color: var(--gold); letter-spacing: 5px; font-weight: bold; display: block; margin-bottom: 10px; }
+
+.btn-gold {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-gold:hover { background: var(--gold); color: black; }
+
+/* SEÇÃO SOBRE */
+section { padding: 100px 0; }
+.sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.placeholder-img { height: 450px; background: #eee; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; }
+
+/* CONTATO */
+.contato { text-align: center; }
+.botoes-contato { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+.btn-zap { background: #25d366; color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+.btn-email { border: 1px solid #333; padding: 15px 35px; text-decoration: none; color: #333; font-weight: bold; border-radius: 5px; }
+
+/* RODAPÉ ASSINATURA */
+footer { padding: 50px 0; background: #000; text-align: center; color: #777; }
+.assinatura-final span { color: var(--gold); font-weight: 900; text-transform: uppercase; }
