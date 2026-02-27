@@ -3,70 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Melgaço | Landing Pages</title>
+    <title>Dev Melgaço | Landing Pages Profissionais</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f0f2f5; color: #333; }
-        header { background: #1a1a1a; color: white; text-align: center; padding: 40px 20px; }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 10px; padding: 30px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s; text-decoration: none; color: inherit; display: block; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-        .card i { font-size: 3rem; color: #007bff; margin-bottom: 15px; }
-        .card h3 { margin-bottom: 10px; font-size: 1.4rem; }
-        .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: #007bff; color: white; border-radius: 5px; font-weight: bold; }
-        footer { text-align: center; padding: 20px; color: #666; font-size: 0.9rem; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Dev Melgaço</h1>
-        <p>Modelos de Landing Pages de Alta Conversão</p>
+        <div class="container">
+            <h1>Dev Melgaço</h1>
+            <p>Selecione um dos nossos modelos de Landing Page abaixo</p>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="grid">
+    <main class="container">
+        <div class="grid-cards">
             
             <a href="advocacia/" class="card">
-                <i class="fas fa-balance-scale"></i>
+                <div class="icon-box"><i class="fas fa-balance-scale"></i></div>
                 <h3>Advocacia</h3>
-                <p>Escritórios e Advogados</p>
-                <span class="btn">Ver Modelo</span>
+                <p>Landing Page para Advogados</p>
+                <span class="btn-demo">Ver Modelo</span>
             </a>
 
             <a href="restaurante/" class="card">
-                <i class="fas fa-utensils"></i>
+                <div class="icon-box"><i class="fas fa-utensils"></i></div>
                 <h3>Restaurante</h3>
                 <p>Delivery e Gastronomia</p>
-                <span class="btn">Ver Modelo</span>
+                <span class="btn-demo">Ver Modelo</span>
             </a>
 
             <a href="dentista/" class="card">
-                <i class="fas fa-tooth"></i>
+                <div class="icon-box"><i class="fas fa-tooth"></i></div>
                 <h3>Dentista</h3>
-                <p>Clínicas Odontológicas</p>
-                <span class="btn">Ver Modelo</span>
+                <p>Consultórios Odontológicos</p>
+                <span class="btn-demo">Ver Modelo</span>
             </a>
 
             <a href="personal/" class="card">
-                <i class="fas fa-dumbbell"></i>
+                <div class="icon-box"><i class="fas fa-dumbbell"></i></div>
                 <h3>Personal Trainer</h3>
                 <p>Consultoria Fitness</p>
-                <span class="btn">Ver Modelo</span>
+                <span class="btn-demo">Ver Modelo</span>
             </a>
 
             <a href="cuidador/" class="card">
-                <i class="fas fa-heart-pulse"></i>
+                <div class="icon-box"><i class="fas fa-heart-pulse"></i></div>
                 <h3>Cuidador</h3>
                 <p>Home Care e Saúde</p>
-                <span class="btn">Ver Modelo</span>
+                <span class="btn-demo">Ver Modelo</span>
             </a>
 
         </div>
-    </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 Dev Melgaço - Todos os direitos reservados.</p>
