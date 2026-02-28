@@ -84,3 +84,16 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
         padding: 15px;
     }
 }
+
+/* ... códigos antigos do layout de agência ... */
+
+.card-info h3 { ... }
+footer { ... }
+
+/* --- AQUI VOCÊ COLA O NOVO CÓDIGO --- */
+
+.whatsapp-card-float {
+    position: fixed;
+    bottom: 30px;
+    /* ... resto do código ... */
+}
