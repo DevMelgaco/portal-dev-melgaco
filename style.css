@@ -1,9 +1,19 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+/* --- LAYOUT DE AGÊNCIA PREMIUM --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Montserrat', sans-serif; 
+}
 
-body { background-color: #0f172a; color: white; }
+body { 
+    background-color: #0f172a; 
+    color: white; 
+    padding-bottom: 100px; /* Espaço para o botão não tampar o rodapé */
+}
 
 .main-header {
-    height: 40vh;
+    height: 45vh;
     background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1350&q=80') center/cover;
     position: relative;
     display: flex;
@@ -12,88 +22,153 @@ body { background-color: #0f172a; color: white; }
     text-align: center;
 }
 
-.overlay { background: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 20px; }
+.overlay { 
+    background: rgba(0, 0, 0, 0.75); 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    padding: 20px; 
+}
 
-.main-header h1 { font-size: 3rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 4px; }
+.main-header h1 { 
+    font-size: 3.5rem; 
+    color: #38bdf8; 
+    text-transform: uppercase; 
+    letter-spacing: 5px; 
+    margin-bottom: 10px;
+}
 
-.container { max-width: 1200px; margin: -50px auto 50px; padding: 0 20px; position: relative; z-index: 10; }
+.main-header p {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+}
 
-.showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.container { 
+    max-width: 1200px; 
+    margin: -60px auto 50px; 
+    padding: 0 20px; 
+    position: relative; 
+    z-index: 10; 
+}
+
+.showcase { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 25px; 
+}
 
 .nicho-card {
-    height: 350px;
-    border-radius: 15px;
+    height: 380px;
+    border-radius: 20px;
     text-decoration: none;
     color: white;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
     position: relative;
-    transition: 0.4s;
+    transition: 0.5s ease;
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-.nicho-card:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3); }
+.nicho-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25); 
+    border-color: #38bdf8;
+}
 
-/* Imagens Reais para os Cards */
+/* Imagens dos Cards */
 .advocacia { background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=500&q=80') center/cover; }
 .restaurante { background: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=500&q=80') center/cover; }
 .dentista { background: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=500&q=80') center/cover; }
 .fitness { background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80') center/cover; }
 .saude { background: url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500&q=80') center/cover; }
 
-.card-info { background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 30px 20px; }
-
-.card-info h3 { font-size: 1.5rem; margin-bottom: 5px; color: #38bdf8; }
-
-footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
-/* Estilo do Botão WhatsApp */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366;
-    color: #fff;
-    padding: 15px 25px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: 0.3s;
+.card-info { 
+    background: linear-gradient(transparent, rgba(0,0,0,0.95)); 
+    width: 100%; 
+    padding: 40px 25px; 
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #128c7e;
+.card-info h3 { 
+    font-size: 1.6rem; 
+    margin-bottom: 8px; 
+    color: #38bdf8; 
 }
 
-.whatsapp-float i {
-    font-size: 24px;
+.card-info p {
+    font-size: 0.95rem;
+    color: #94a3b8;
 }
 
-/* Esconder o texto no celular para não tampar a tela */
-@media (max-width: 768px) {
-    .whatsapp-float span {
-        display: none;
-    }
-    .whatsapp-float {
-        padding: 15px;
-    }
+footer { 
+    text-align: center; 
+    padding: 60px 20px; 
+    color: #475569; 
+    font-size: 0.9rem; 
 }
 
-/* ... códigos antigos do layout de agência ... */
-
-.card-info h3 { ... }
-footer { ... }
-
-/* --- AQUI VOCÊ COLA O NOVO CÓDIGO --- */
-
+/* --- BOTÃO WHATSAPP GIGANTE (ESTILO CARD) --- */
 .whatsapp-card-float {
     position: fixed;
     bottom: 30px;
-    /* ... resto do código ... */
+    right: 30px;
+    width: 340px; /* Quase o tamanho de um card */
+    background-color: #25d366;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.whatsapp-card-float:hover {
+    transform: scale(1.05) translateY(-5px);
+    background-color: #128c7e;
+    box-shadow: 0 20px 45px rgba(37, 211, 102, 0.5);
+}
+
+.wa-icon {
+    font-size: 2.8rem;
+    margin-right: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.wa-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.wa-text span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wa-text small {
+    font-size: 0.85rem;
+    opacity: 0.95;
+    font-weight: 400;
+}
+
+/* Ajuste Responsivo para Celular */
+@media (max-width: 500px) {
+    .whatsapp-card-float {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        padding: 15px;
+    }
+    .wa-text span { font-size: 1rem; }
+    .main-header h1 { font-size: 2.2rem; }
 }
