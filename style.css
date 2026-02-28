@@ -47,3 +47,40 @@ body { background-color: #0f172a; color: white; }
 .card-info h3 { font-size: 1.5rem; margin-bottom: 5px; color: #38bdf8; }
 
 footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
+/* Estilo do Botão WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+}
+
+.whatsapp-float i {
+    font-size: 24px;
+}
+
+/* Esconder o texto no celular para não tampar a tela */
+@media (max-width: 768px) {
+    .whatsapp-float span {
+        display: none;
+    }
+    .whatsapp-float {
+        padding: 15px;
+    }
+}
