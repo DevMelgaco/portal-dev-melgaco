@@ -3,57 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[NOME DO RESTAURANTE] | Delivery & Sabor</title>
+    <title>Sabor & Arte | Experiência Gastronômica</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="hero">
-        <div class="overlay">
-            <h1>[NOME DO RESTAURANTE]</h1>
-            <p class="slogan">O melhor sabor da região, no conforto da sua casa.</p>
-            
-            <div class="contatos-header">
-                <a href="tel:3133334444" class="fone-fixo"><i class="fas fa-phone-alt"></i> (31) 3333-4444</a>
-                <a href="https://wa.me/5531987836850" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Peça pelo WhatsApp
-                </a>
-            </div>
+    <header class="hero-restaurante">
+        <div class="overlay-dark">
+            <span class="top-tag">O melhor Delivery de BH</span>
+            <h1>Sabor & <span class="gold">Arte</span></h1>
+            <p>Uma jornada gastronômica premium entregue com perfeição na sua casa.</p>
+            <a href="https://wa.me/5531987836850" class="btn-wa-restaurante" target="_blank">
+                <i class="fab fa-whatsapp"></i> PEÇA PELO WHATSAPP
+            </a>
         </div>
     </header>
 
-    <section class="gastronomia">
-        <h2>Destaques do Restaurante</h2>
-        <div class="grid-fotos">
-            <div class="foto-card">
-                <img src="foto1.jpg" alt="Prato 1">
-                <div class="tag">Mais Pedido</div>
-            </div>
-            <div class="foto-card">
-                <img src="foto2.jpg" alt="Prato 2">
-                <div class="tag">Especialidade</div>
-            </div>
-            <div class="foto-card">
-                <img src="foto3.jpg" alt="Prato 3">
-                <div class="tag">Novo no Menu</div>
+    <section class="menu-destaque">
+        <div class="container-res">
+            <h2>Nossos Favoritos</h2>
+            <div class="grid-cardapio">
+                <div class="item-prato">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=500" alt="Carnes Nobres">
+                    </div>
+                    <h3>Cortes Nobres</h3>
+                    <p>Carnes selecionadas preparadas no fogo alto para selar o sabor.</p>
+                </div>
+                <div class="item-prato">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=500" alt="Massas Artesanais">
+                    </div>
+                    <h3>Massas Artesanais</h3>
+                    <p>Feitas à mão diariamente com farinha importada e molhos frescos.</p>
+                </div>
+                <div class="item-prato">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1512152272829-e3139592d56f?q=80&w=500" alt="Burgers Gourmet">
+                    </div>
+                    <h3>Burgers Gourmet</h3>
+                    <p>Blend exclusivo de carnes em pão brioche artesanal selado.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="conveniencia">
-        <div class="container-info">
-            <h3>Conveniência e Sabor</h3>
-            <ul class="lista-delivery">
-                <li><i class="fas fa-motorcycle"></i> <strong>Delivery Rápido:</strong> Entregamos em toda BH com embalagens térmicas.</li>
-                <li><i class="fas fa-store"></i> <strong>Retirada no Local:</strong> Se preferir, seu pedido fica pronto em 20 min.</li>
-                <li><i class="fas fa-credit-card"></i> <strong>Pagamento Facilitado:</strong> Aceitamos cartões, Pix e Vale Refeição.</li>
-            </ul>
+    <section class="info-entrega">
+        <div class="caixa-info">
+            <div class="info-col">
+                <i class="fas fa-motorcycle"></i>
+                <h4>Delivery Rápido</h4>
+                <p>Embalagens térmicas que mantêm o sabor.</p>
+            </div>
+            <div class="info-col">
+                <i class="fas fa-clock"></i>
+                <h4>Tempo Médio</h4>
+                <p>Receba em até 45 minutos.</p>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Dev Melgaço - Transformando Negócios Digitais</p>
+    <footer class="footer-res">
+        <p>&copy; 2026 Dev Melgaço - Projetos de Alta Performance</p>
     </footer>
 
 </body>

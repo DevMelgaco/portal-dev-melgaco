@@ -1,0 +1,159 @@
+/* Nova Paleta: Black & Royal Gold */
+:root {
+    --preto-base: #0a0a0a;
+    --preto-card: #141414;
+    --dourado-luxo: #d4af37; /* Dourado mais fechado e elegante */
+    --dourado-hover: #f1c40f;
+    --branco-gelo: #f8f9fa;
+    --texto-corpo: #b0b0b0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--branco-gelo);
+    line-height: 1.6;
+    background-color: var(--preto-base);
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Hero Section */
+.hero {
+    height: 85vh;
+    background: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.9), rgba(10,10,10,0.7));
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.top-label { 
+    color: var(--dourado-luxo); 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    letter-spacing: 8px;
+    margin: 15px 0;
+    color: var(--branco-gelo);
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 18px 45px;
+    background: var(--dourado-luxo);
+    color: var(--preto-base);
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+
+.btn-gold:hover { 
+    background: var(--branco-gelo); 
+    color: var(--preto-base);
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Seção Sobre */
+section { padding: 100px 0; }
+h2 { font-family: 'Cinzel', serif; color: var(--dourado-luxo); font-size: 2.2rem; }
+
+.highlight { color: var(--branco-gelo); }
+
+.flex-row { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+
+.img-perfil {
+    width: 350px;
+    height: 480px;
+    object-fit: cover;
+    border: 1px solid var(--dourado-luxo);
+    padding: 10px;
+    box-shadow: 20px 20px 0px var(--preto-card);
+}
+
+/* Cards de Atuação */
+.areas-atuacao { background: var(--preto-card); text-align: center; }
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background: var(--preto-base);
+    padding: 50px 30px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: 0.4s;
+}
+
+.card:hover { 
+    border-color: var(--dourado-luxo);
+    transform: translateY(-10px); 
+}
+
+.card i { font-size: 3rem; color: var(--dourado-luxo); margin-bottom: 25px; }
+.card h3 { font-family: 'Cinzel', serif; margin-bottom: 15px; color: var(--branco-gelo); }
+.card p { color: var(--texto-corpo); }
+
+/* Contato */
+.contato { text-align: center; background: var(--preto-base); }
+.botoes-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.btn-contato {
+    padding: 18px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--preto-base);
+    transition: 0.3s;
+}
+
+.email { background: var(--branco-gelo); color: var(--preto-base); }
+.whatsapp { background: #25d366; color: white; }
+
+.btn-contato:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+footer { 
+    background: #050505; 
+    color: #555; 
+    text-align: center; 
+    padding: 60px 0; 
+    border-top: 1px solid #1a1a1a;
+}
+
+.dev-tag { color: var(--dourado-luxo); margin-top: 10px; font-size: 0.8rem; }
+
+@media (max-width: 768px) {
+    .img-perfil { width: 100%; height: auto; }
+}
