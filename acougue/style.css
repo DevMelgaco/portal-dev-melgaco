@@ -1,0 +1,70 @@
+/* Paleta: Vermelho Sangue, Preto e Madeira */
+:root {
+    --vermelho: #8b0000;
+    --preto: #1a1a1a;
+    --cinza: #f4f4f4;
+    --branco: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: 'Roboto', sans-serif; background-color: var(--branco); color: #333; line-height: 1.6; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Header / Hero */
+.hero-acougue {
+    height: 70vh;
+    background: url('https://images.unsplash.com/photo-1551028150-64b9f398f678?q=80&w=1350') center/cover no-repeat;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+}
+
+.overlay-rugged {
+    background: rgba(0,0,0,0.7); width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;
+}
+
+h1 { font-family: 'Oswald', sans-serif; font-size: 3.5rem; color: var(--branco); line-height: 1.1; margin-bottom: 20px; }
+.highlight { color: #ff4d4d; }
+
+.hero-acougue p { color: #ddd; max-width: 600px; font-size: 1.2rem; margin-bottom: 30px; }
+
+.btn-whatsapp-acougue {
+    background-color: #25d366; color: #fff; text-decoration: none; padding: 18px 45px;
+    border-radius: 5px; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; transition: 0.3s;
+}
+
+.btn-whatsapp-acougue:hover { transform: scale(1.05); background-color: #128c7e; }
+
+/* Destaques */
+.destaques-carnes { padding: 80px 0; background: var(--cinza); text-align: center; }
+.destaques-carnes h2 { font-family: 'Oswald', sans-serif; font-size: 2.5rem; margin-bottom: 50px; color: var(--preto); }
+
+.grid-carnes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.carne-card { background: var(--branco); padding: 20px; border: 1px solid #ddd; border-bottom: 5px solid var(--vermelho); }
+
+.img-box { height: 250px; overflow: hidden; margin-bottom: 20px; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.carne-card:hover img { transform: scale(1.1); }
+
+/* Seção Compromisso */
+.compromisso { padding: 80px 0; }
+.flex-acougue { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+
+.info-texto { flex: 1; min-width: 300px; }
+.info-texto h3 { font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 20px; color: var(--vermelho); }
+
+.lista-vantagens { list-style: none; margin-top: 20px; }
+.lista-vantagens li { margin-bottom: 10px; font-weight: 700; color: var(--preto); display: flex; align-items: center; gap: 10px; }
+.lista-vantagens i { color: #25d366; }
+
+.img-loja { flex: 1; min-width: 300px; }
+.img-loja img { width: 100%; border-radius: 10px; box-shadow: 10px 10px 0px var(--vermelho); }
+
+footer { background: var(--preto); color: #777; text-align: center; padding: 40px; font-size: 0.9rem; }
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .flex-acougue { text-align: center; }
+}
