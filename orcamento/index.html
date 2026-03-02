@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Investimento | Dev Melgaço</title>
+    <style>
+        :root { --gold: #d4af37; --dark: #0f172a; --text: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: var(--text); padding: 40px 20px; text-align: center; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+        p { color: #94a3b8; margin-bottom: 40px; }
+        .price-card { background: #1e293b; border-radius: 15px; padding: 30px; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2); text-align: left; transition: 0.3s; }
+        .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .price-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
+        .price-title { font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+        .price-value { font-size: 1.25rem; font-weight: bold; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        li::before { content: '✓'; color: var(--gold); font-weight: bold; }
+        .btn-wa { display: block; background: #25d366; color: white; text-align: center; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tabela de Investimento</h1>
+        <p>Soluções digitais exclusivas para gravar sua marca na internet.</p>
+
+        <div class="price-card">
+            <div class="price-header">
+                <span class="price-title">Landing Page Start</span>
+                <span class="price-value">R$ 850,00</span>
+            </div>
+            <ul>
+                <li>Design focado em conversão</li>
+                <li>Botão flutuante de WhatsApp</li>
+                <li>Hospedagem inclusa (via GitHub)</li>
+                <li>Design Responsivo (Celular/PC)</li>
+            </ul>
+        </div>
+
+        <div class="price-card">
+            <div class="price-header">
+                <span class="price-title">Landing Page Elite</span>
+                <span class="price-value">R$ 1.500,00</span>
+            </div>
+            <ul>
+                <li>Tudo do pacote Start</li>
+                <li>Textos de venda (Copywriting Profissional)</li>
+                <li>Integração com Google Meu Negócio</li>
+                <li>Suporte técnico por 30 dias</li>
+            </ul>
+        </div>
+
+        <a href="https://wa.me/5531987836850" class="btn-wa">SOLICITAR PROJETO PERSONALIZADO</a>
+    </div>
+</body>
+</html>
