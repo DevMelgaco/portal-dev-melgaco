@@ -1,20 +1,41 @@
 const capivara = document.getElementById('capivara');
 const jogoContainer = document.getElementById('jogo-container');
 const placarElemento = document.getElementById('placar');
+const telaInicio = document.getElementById('tela-inicio');
+const btnIniciar = document.getElementById('btn-iniciar');
 
 let pontos = 0;
 let fase = 1;
-let jogoAtivo = true;
-let velocidadeQueda = 5;
-let frequenciaItens = 1000;
+let jogoAtivo = false;
+let velocidadeQueda = 4; // Começa um pouco mais lento para ser justo
+let frequenciaItens = 1200;
 
-// Movimento da Capivara com o Mouse ou Toque
-window.addEventListener('mousemove', (e) => {
-    if (jogoAtivo) {
-        let x = e.clientX - 40;
-        capivara.style.left = x + 'px';
-    }
+// Iniciar o jogo
+btnIniciar.addEventListener('click', () => {
+    telaInicio.style.display = 'none';
+    jogoAtivo = true;
+    pontos = 0;
+    fase = 1;
+    velocidadeQueda = 4;
+    atualizarPlacar();
+    loopCriacao();
 });
+
+// Movimentação Suave (Mouse e Touch)
+function moverCapivara(clientX) {
+    if (!jogoAtivo) return;
+    let x = clientX - (capivara.offsetWidth / 2);
+    // Impede a capivara de sair da tela
+    if (x < 0) x = 0;
+    if (x > window.innerWidth - 80) x = window.innerWidth - 80;
+    capivara.style.left = x + 'px';
+}
+
+window.addEventListener('mousemove', (e) => moverCapivara(e.clientX));
+window.addEventListener('touchmove', (e) => {
+    moverCapivara(e.touches[0].clientX);
+    e.preventDefault();
+}, { passive: false });
 
 function criarItem() {
     if (!jogoAtivo) return;
@@ -22,14 +43,12 @@ function criarItem() {
     const item = document.createElement('div');
     item.classList.add('item');
     
-    // Sorteio de qual item vai cair
     const tipos = [
-        { tipo: 'perigo', emoji: '👟', pontos: 0 },    // Tênis
-        { tipo: 'perigo', emoji: '🩴', pontos: 0 },    // Chinelo
-        { tipo: 'perigo', emoji: '👡', pontos: 0 },    // Sandália
-        { tipo: 'fruta', emoji: '🍍', pontos: 30 },   // Abacaxi
-        { tipo: 'fruta', emoji: '🍌', pontos: 10 },   // Banana
-        { tipo: 'fruta', emoji: '🍇', pontos: 20 }    // Uva
+        { tipo: 'perigo', emoji: '👟', pontos: 0 },
+        { tipo: 'perigo', emoji: '🩴', pontos: 0 },
+        { tipo: 'fruta', emoji: '🍍', pontos: 30 },
+        { tipo: 'fruta', emoji: '🍌', pontos: 10 },
+        { tipo: 'fruta', emoji: '🍇', pontos: 20 }
     ];
 
     const sorteado = tipos[Math.floor(Math.random() * tipos.length)];
@@ -41,19 +60,22 @@ function criarItem() {
     let posicaoTop = -50;
 
     function cair() {
-        if (!jogoAtivo) return;
+        if (!jogoAtivo) {
+            item.remove();
+            return;
+        }
         posicaoTop += velocidadeQueda;
         item.style.top = posicaoTop + 'px';
 
-        // Checar colisão
         const rectCapivara = capivara.getBoundingClientRect();
         const rectItem = item.getBoundingClientRect();
 
+        // Colisão ajustada para ser mais generosa no celular
         if (
-            rectItem.bottom > rectCapivara.top &&
-            rectItem.top < rectCapivara.bottom &&
-            rectItem.right > rectCapivara.left &&
-            rectItem.left < rectCapivara.right
+            rectItem.bottom > rectCapivara.top + 10 &&
+            rectItem.top < rectCapivara.bottom - 10 &&
+            rectItem.right > rectCapivara.left + 10 &&
+            rectItem.left < rectCapivara.right - 10
         ) {
             if (sorteado.tipo === 'perigo') {
                 gameOver();
@@ -62,10 +84,10 @@ function criarItem() {
                 atualizarPlacar();
                 item.remove();
                 checarFase();
+                return; // Para o requestAnimationFrame deste item
             }
         }
 
-        // Remover item se sair da tela
         if (posicaoTop > window.innerHeight) {
             item.remove();
         } else {
@@ -75,23 +97,26 @@ function criarItem() {
     requestAnimationFrame(cair);
 }
 
+function loopCriacao() {
+    if (jogoAtivo) {
+        criarItem();
+        setTimeout(loopCriacao, frequenciaItens / (fase * 0.8));
+    }
+}
+
 function atualizarPlacar() {
     placarElemento.innerHTML = `Pontos: ${pontos} | Fase: ${fase}`;
 }
 
 function checarFase() {
-    if (pontos > fase * 200) {
+    if (pontos > fase * 150) {
         fase++;
-        velocidadeQueda += 1.5; // Aumenta a dificuldade
-        console.log("Subiu de fase!");
+        velocidadeQueda += 0.8;
     }
 }
 
 function gameOver() {
     jogoAtivo = false;
-    alert(`FIM DE JOGO! A capivara foi atingida.\nPontos totais: ${pontos}\nFase alcançada: ${fase}`);
-    location.reload(); // Reinicia o jogo
+    alert(`GAME OVER!\nPontos: ${pontos}\nFase: ${fase}`);
+    location.reload();
 }
-
-// Iniciar criação de itens
-setInterval(criarItem, frequenciaItens);
