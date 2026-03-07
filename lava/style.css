@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background-color: #121212; /* Fundo grafite profundo */
+    color: #ffffff; 
+}
+
+header {
+    padding: 25px;
+    text-align: center;
+    background: #000;
+    border-bottom: 2px solid #2ecc11;
+}
+
+.logo { font-size: 20px; font-weight: 900; letter-spacing: 1px; color: white; }
+.crown { color: #ffcc00; text-shadow: 0 0 5px #ffcc00; }
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(circle, #1e1e1e 0%, #121212 100%);
+}
+
+/* Container para destacar o texto sobre o fundo escuro */
+.card-container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 50px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.main-title { font-size: 2.2rem; line-height: 1.2; font-weight: 900; margin-bottom: 15px; }
+.verde-suave { color: #2ecc11; }
+
+.subtitle { font-size: 1rem; color: #aaaaaa; margin-bottom: 30px; }
+
+.check-list { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-bottom: 40px; 
+    flex-wrap: wrap; 
+}
+.check-list span { font-size: 0.85rem; font-weight: bold; color: #2ecc11; }
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 35px;
+    background: #2ecc11;
+    color: #000;
+    text-decoration: none;
+    font-weight: 900;
+    border-radius: 50px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.cta-button:hover { transform: scale(1.05); background: #27ae60; box-shadow: 0 0 20px rgba(46, 204, 17, 0.4); }
+
+.address-section { padding: 80px 20px; text-align: center; background: #0a0a0a; }
+.address-section h2 { margin-bottom: 10px; color: #2ecc11; }
+.image-box img { 
+    width: 100%; 
+    max-width: 700px; 
+    border-radius: 15px; 
+    margin-top: 25px; 
+    border: 1px solid #333; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+footer { padding: 40px; text-align: center; font-size: 0.85rem; color: #555; background: #000; }

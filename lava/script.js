@@ -1,0 +1,1 @@
+console.log("Box 8 Car Wash - Carregado com Sucesso!");
