@@ -1,0 +1,71 @@
+:root {
+    --primary: #0046ad; /* Azul Royal (Segurança) */
+    --secondary: #00c853; /* Verde Esmeralda (Tranquilidade) */
+    --text: #333;
+    --light: #f4f7f6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--text); background: #fff; }
+
+.container { width: 90%; max-width: 1100px; margin: auto; }
+
+header {
+    background: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky; top: 0; z-index: 100;
+}
+
+header .container { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { font-size: 22px; font-weight: 800; color: var(--primary); }
+.logo span { color: var(--secondary); }
+
+.btn-zap {
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex; align-items: center; gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-zap:hover { background: #00a042; transform: scale(1.05); }
+
+.hero {
+    background: linear-gradient(rgba(0, 70, 173, 0.8), rgba(0, 70, 173, 0.8)), 
+                url('https://images.unsplash.com/photo-1556742049-04ff4361cc5c?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-position: center;
+    padding: 120px 0; color: white; text-align: center;
+}
+
+.hero h1 { font-size: 3rem; margin-bottom: 20px; }
+.hero h1 span { color: var(--secondary); }
+.hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+.btn-saiba {
+    padding: 15px 40px; border: 2px solid white; color: white;
+    text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s;
+}
+
+.btn-saiba:hover { background: white; color: var(--primary); }
+
+.servicos { padding: 80px 0; background: var(--light); }
+.servicos h2 { text-align: center; margin-bottom: 50px; font-size: 2.2rem; color: var(--primary); }
+
+.grid-seguros { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+
+.card-seguro {
+    background: white; padding: 40px 25px; border-radius: 10px; text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
+}
+
+.card-seguro:hover { transform: translateY(-10px); border-bottom: 4px solid var(--primary); }
+
+.card-seguro i { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+
+footer { padding: 40px; text-align: center; background: #222; color: #fff; }
