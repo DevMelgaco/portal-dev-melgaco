@@ -1,0 +1,58 @@
+:root {
+    --primary: #6c5ce7; /* Roxo Tecnológico */
+    --secondary: #00d2d3; /* Azul Neon */
+    --dark: #2d3436;
+    --light: #f9f9f9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: 'Segoe UI', sans-serif; color: var(--dark); line-height: 1.6; }
+
+.container { width: 90%; max-width: 1100px; margin: auto; }
+
+header {
+    background: #fff; padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    position: sticky; top: 0; z-index: 100;
+}
+
+header .container { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { font-size: 24px; font-weight: 800; color: var(--primary); }
+.logo span { color: var(--secondary); }
+
+.btn-whatsapp {
+    background: #25d366; color: white; padding: 10px 20px;
+    border-radius: 5px; text-decoration: none; font-weight: bold;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 100px 0; color: white; text-align: center;
+}
+
+.hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+
+.btn-scroll {
+    display: inline-block; margin-top: 30px; padding: 15px 40px;
+    background: white; color: var(--primary); font-weight: bold;
+    text-decoration: none; border-radius: 50px; transition: 0.3s;
+}
+
+.servicos { padding: 80px 0; background: var(--light); }
+.servicos h2 { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
+
+.grid-servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+
+.card {
+    background: white; padding: 30px; border-radius: 15px; text-align: center;
+    transition: 0.3s; border-bottom: 4px solid transparent;
+}
+
+.card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--secondary); }
+
+.card i { font-size: 45px; color: var(--primary); margin-bottom: 20px; }
+
+footer { padding: 30px; text-align: center; background: var(--dark); color: white; }
