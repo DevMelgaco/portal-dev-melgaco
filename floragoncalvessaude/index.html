@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Gonçalves Saúde | Dev Melgaço</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS INTEGRADO */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background: #f4f7f6; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Navegação */
+        header { background: #2d5a27; color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-around; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; }
+        .logo span { font-weight: bold; color: #a2d149; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        nav ul li a:hover { color: #a2d149; }
+
+        /* Seção Perfil e Trajetória */
+        .perfil-flex { display: flex; align-items: center; gap: 40px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .foto-perfil img { width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 8px solid #f4f7f6; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .texto-trajetoria h2 { color: #2d5a27; margin-bottom: 20px; font-size: 2rem; }
+        .texto-trajetoria p { margin-bottom: 15px; font-size: 1.1rem; color: #555; }
+
+        /* Grid de Planos */
+        .section-title { text-align: center; color: #2d5a27; margin-bottom: 30px; font-size: 2rem; }
+        .grid-planos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+        .plano-card { background: white; padding: 25px; border-radius: 12px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid #eee; }
+        .plano-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #2d5a27; }
+        .plano-card img { max-width: 100%; height: auto; filter: grayscale(100%); transition: 0.3s; opacity: 0.7; }
+        .plano-card:hover img { filter: grayscale(0%); opacity: 1; }
+
+        /* BOTÃO WHATSAPP FLUTUANTE */
+        .btn-whatsapp {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+        }
+
+        footer { text-align: center; padding: 30px; background: #333; color: white; margin-top: 60px; }
+        
+        /* Responsividade para Celular */
+        @media (max-width: 768px) {
+            .perfil-flex { flex-direction: column; text-align: center; }
+            nav ul { display: none; }
+            .btn-whatsapp { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/5531987836850?text=Olá%20Flora,%20vim%20pelo%20site%20e%20gostaria%20de%20uma%20cotação!" class="btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <nav>
+            <div class="logo">Flora Gonçalves <span>Saúde</span></div>
+            <ul>
+                <li><a href="#sobre">Trajetória</a></li>
+                <li><a href="#planos">Planos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="sobre" class="perfil-flex">
+            <div class="foto-perfil">
+                <img src="img/flora.jpg" alt="Flora Gonçalves">
+            </div>
+            <div class="texto-trajetoria">
+                <h2>Minha Trajetória</h2>
+                <p>Com vasta experiência no mercado de seguros e benefícios, dedico minha carreira a oferecer soluções de saúde que realmente fazem a diferença na vida das pessoas.</p>
+                <p>Meu compromisso é com a transparência e a segurança, auxiliando você a escolher o plano ideal entre as maiores operadoras do país.</p>
+            </div>
+        </section>
+
+        <section id="planos">
+            <h2 class="section-title">Nossos Parceiros</h2>
+            <div class="grid-planos">
+                <div class="plano-card"><img src="img/unimed.png" alt="Unimed"></div>
+                <div class="plano-card"><img src="img/amil.png" alt="Amil"></div>
+                <div class="plano-card"><img src="img/bradesco.png" alt="Bradesco"></div>
+                <div class="plano-card"><img src="img/sulamerica.png" alt="SulAmérica"></div>
+                <div class="plano-card"><img src="img/hapvida.png" alt="Hapvida"></div>
+                <div class="plano-card"><img src="img/intermedica.png" alt="GNDI"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Desenvolvido com excelência por <strong>Dev Melgaço</strong></p>
+    </footer>
+
+    <script>
+        // JS para log de carregamento
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Landing Page Flora Gonçalves Saúde - By Dev Melgaço");
+        });
+    </script>
+</body>
+</html>
