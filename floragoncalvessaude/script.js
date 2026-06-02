@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Formulário de contato com feedback limpo (Pronto caso adicione o ID futuramente)
+    // Formulário de contato com feedback limpo
     const form = document.getElementById('form-contato');
     if (form) {
         form.addEventListener('submit', (e) => {
